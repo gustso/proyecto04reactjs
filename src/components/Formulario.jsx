@@ -9,8 +9,8 @@ const Formulario = ({ funcion, comidas, opciones }) => {
     // agregado
     const [subOpcion, setSubOpcion] = useState("");
 
-    const subOptions = comida ? opciones[comida] : []
-    console.log("paso por aquí y comida tiene "+comida);
+    const subOpciones = comida ? opciones[comida] : []
+    //console.log("paso por aquí y comida tiene "+comida);
 
     const manejarCambios = (e) => {
         const value = e.target.value;
@@ -51,7 +51,7 @@ const Formulario = ({ funcion, comidas, opciones }) => {
                         value={subOpcion}
                         onChange={(e) => setSubOpcion(e.target.value)}>
                         <option>Selecciona una opción</option>
-                        {subOptions.map((i) => (
+                        {subOpciones.map((i) => (
                             <option key={i} value={i}>
                                 {i}
                             </option>))}
