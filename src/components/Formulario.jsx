@@ -1,43 +1,68 @@
 import { useState } from "react";
+import { Form, Button } from "react-bootstrap"
 
-const COMIDAS = ["empanadas","milanesas","asado","pizzas","sanguches"];
-
-const Formulario = ({funcion})=>{
+const Formulario = ({ funcion, comidas, opciones }) => {
     //const nombre = "";
-    const [nombre,setNombre] = useState("A");
-    const [comida,setComida] = useState("");
+    const [nombre, setNombre] = useState("A");
+    const [comida, setComida] = useState("");
 
-    console.log(nombre);
+    // agregado
+    const [subOpcion, setSubOpcion] = useState("");
+
+    const subOptions = comida ? opciones[comida] : []
+    console.log("paso por aquí y comida tiene "+comida);
+
+    const manejarCambios = (e) => {
+        const value = e.target.value;
+        setComida(value);
+        setSubOpcion("");
+    }
+    // hasta aquí los cambios
 
     const procesarDatos = (e) => {
         e.preventDefault();
         const seleccion = {
-            nombre : nombre.trim(),
-            comida : comida.trim()
+            nombre: nombre.trim(),
+            comida: comida.trim()
         };
-
         funcion(seleccion);
         setNombre("");
         setComida("");
-
     };
- 
-    return(
-        <form onSubmit={procesarDatos}>
-            <label htmlFor="nombre">Ingrese Nombre</label>
-            <input type="text" id="nombre" 
-                    value={nombre}
-                    onChange={(e)=>setNombre(e.target.value)}/>
-            <label htmlFor="comida">Elegir Comida</label>
-            <select id="comida" value={comida}
-                    onChange={(e)=>{setComida(e.target.value)}}>
-                <option value="">Seleccionar una Comida</option>
-                    {COMIDAS.map((c)=>(
+
+    return (
+        <div>
+            <Form onSubmit={procesarDatos}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Ingresar Nombre</Form.Label>
+                    <Form.Control type="text" placeholder="ingresar un nombre"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)} />
+                </Form.Group>
+                <Form.Select value={comida} onChange={manejarCambios}>
+                    <option>Elegir una comida favorita</option>
+                    {comidas.map((c) => (
                         <option key={c} value={c}>{c}</option>
-                    ))}                
-            </select>
-            <button type="submit">Guardar</button>
-        </form>
+                    ))}
+                </Form.Select>
+
+                {comida && (
+                    <Form.Select id="subOption"
+                        value={subOpcion}
+                        onChange={(e) => setSubOpcion(e.target.value)}>
+                        <option>Selecciona una opción</option>
+                        {subOptions.map((i) => (
+                            <option key={i} value={i}>
+                                {i}
+                            </option>))}
+                    </Form.Select>
+                )}
+
+                <Button variant="primary" type="submit">
+                    Guardar
+                </Button>
+            </Form>
+        </div>
     )
 }
 
