@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap"
+//import { Form, Button } from "react-bootstrap"
+import { Box, TextField, Select, FormControl, Button, MenuItem, InputLabel } from '@mui/material';
+
 
 const Formulario = ({ funcion, comidas, opciones }) => {
     //const nombre = "";
@@ -32,37 +34,44 @@ const Formulario = ({ funcion, comidas, opciones }) => {
 
     return (
         <div>
-            <Form onSubmit={procesarDatos}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Ingresar Nombre</Form.Label>
-                    <Form.Control type="text" placeholder="ingresar un nombre"
+            <Box component="form" onSubmit={procesarDatos}>
+                <FormControl fullWidth>                    
+                    <TextField placeholder="ingresar un nombre" label="Nombre" variant="outlined"
                         value={nombre}
-                        onChange={(e) => setNombre(e.target.value)} />
-                </Form.Group>
-                <Form.Select value={comida} onChange={manejarCambios}>
-                    <option>Elegir una comida favorita</option>
-                    {comidas.map((c) => (
-                        <option key={c} value={c}>{c}</option>
-                    ))}
-                </Form.Select>
-
-                {comida && (
-                    <Form.Select id="subOption"
-                        value={subOpcion}
-                        onChange={(e) => setSubOpcion(e.target.value)}>
-                        <option>Selecciona una opción</option>
-                        {subOpciones.map((i) => (
-                            <option key={i} value={i}>
-                                {i}
-                            </option>))}
-                    </Form.Select>
-                )}
-
-                <Button variant="primary" type="submit">
-                    Guardar
-                </Button>
-            </Form>
-        </div>
+                        onChange={(e) => setNombre(e.target.value)} />                    
+                </FormControl>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Seleccione</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Comida"
+                        value={comida} onChange={manejarCambios}
+                    >
+                        {comidas.map((c) => (
+                            <MenuItem key={c} value={c}>{c}</MenuItem>
+                        ))}
+                    </Select>
+                    {comida && (
+                        <FormControl fullWidth>
+                        <Select id="subOption"
+                            value={subOpcion}
+                            onChange={(e) => setSubOpcion(e.target.value)}>
+                            
+                            {subOpciones.map((i) => (
+                                <MenuItem key={i} value={i}>
+                                    {i}
+                                </MenuItem>))}
+                        </Select>
+                        </FormControl>
+                    )}
+                </FormControl>
+                <Button variant="contained" type="submit">
+                Guardar
+            </Button>
+            </Box>       
+        
+        </div >
     )
 }
 

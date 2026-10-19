@@ -1,20 +1,31 @@
-import { Card } from "react-bootstrap"
+//import { Card } from "react-bootstrap"
+import { Card, CardContent, CardActions, Typography, Button } from "@mui/material";
 
-const ListaSelecciones = ( {arreglo} ) => {
+const ListaSelecciones = ({ arreglo }) => {
 
     return (
         <>
-            {arreglo.map((p, i) => (
-                <Card style={{ width: '18rem' }} key={i} value={p}>
-                    <Card.Body>
-                        <Card.Title>{p.nombre}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">{p.comida}</Card.Subtitle>
-                        <Card.Text>
-                            Descripción de la comida.
-                        </Card.Text>
-                        <Card.Link href="#">Pagar</Card.Link>
-                    </Card.Body>
-                </Card>))}
+            <Card sx={{ minWidth: 275 }}>
+                {arreglo.map((p, i) => (
+                    <CardContent key={i} value={p}>
+                        <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
+                            {p.nombre}
+                        </Typography>
+                        <Typography variant="h5" component="div">
+                            {p.comida}
+                        </Typography>
+                        <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>adjective</Typography>
+                        <Typography variant="body2">
+                            well meaning and kindly.
+                            <br />
+                            {'"a benevolent smile"'}
+                        </Typography>
+                    </CardContent>))}
+                <CardActions>
+                    <Button size="small">Pedir</Button>
+                </CardActions>
+            </Card>
+            
         </>
 
     )
