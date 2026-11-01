@@ -16,6 +16,9 @@ const Menu = () => {
                     <Button color="inherit" component={ Link } to="/pedidos" variant="outlined">
                         Pedidos
                     </Button>
+                    <Button color="inherit" component={ Link } to="/otrapagina" variant="outlined">
+                        Otra Página
+                    </Button>
                 </Box>
             </Toolbar>
         </AppBar>

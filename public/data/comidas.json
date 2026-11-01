@@ -1,0 +1,6 @@
+[{"nombre":"empanadas", "opciones": ["Carne", "Pollo", "Queso", "Jamon y Queso", "Quinoa"]}, 
+{"nombre":"milanesas", "opciones": ["A caballo", "Napolitana", "Fugazeta", "Mediterranea"]}, 
+{"nombre":"asado", "opciones": ["A punto", "Cocido", "Jugoso"]}, 
+{"nombre": "pizzas", "opciones": ["Especial", "Fugazeta", "Cuatro Quesos", "Ananá", "Rucula"]}, 
+{"nombre": "sanguches", "opciones": ["Milanesa","Lomito","Charles"]}]
+

@@ -1,13 +1,14 @@
-import { Container } from "@mui/material";
-import Menu from "../components/Menu"
+import { Typography, Container } from "@mui/material";
+import Login from "../components/Login";
 
 const Inicio = () => {
-
     return (
-        <>            
-            <h1>INICIO del SISTEMA Gustavo</h1>
-        </>
-    )
+        <Container>
+            <Typography>Este es la pagina de Inicio</Typography>
+            <Login />
+        </Container>)
 }
 
 export default Inicio;
+
+

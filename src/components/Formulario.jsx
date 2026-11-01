@@ -3,15 +3,14 @@ import { useState } from "react";
 import { Box, TextField, Select, FormControl, Button, MenuItem, InputLabel } from '@mui/material';
 
 
-const Formulario = ({ funcion, comidas, opciones }) => {
+const Formulario = ({ funcion, comidas }) => {
     //const nombre = "";
-    const [nombre, setNombre] = useState("A");
-    const [comida, setComida] = useState("");
-
-    // agregado
+    const [nombre, setNombre] = useState("");
+    const [comida, setComida] = useState("");    
     const [subOpcion, setSubOpcion] = useState("");
 
-    const subOpciones = comida ? opciones[comida] : []
+    const comidaSeleccionada = comidas.find((c) => c.nombre === comida)
+    const subOpciones = comidaSeleccionada?.opciones || [];
     //console.log("paso por aquí y comida tiene "+comida);
 
     const manejarCambios = (e) => {
@@ -24,8 +23,10 @@ const Formulario = ({ funcion, comidas, opciones }) => {
     const procesarDatos = (e) => {
         e.preventDefault();
         const seleccion = {
+            id: crypto.randomUUID(),
             nombre: nombre.trim(),
-            comida: comida.trim()
+            comida: comida.trim(),
+            subOpcion: subOpcion.trim()
         };
         funcion(seleccion);
         setNombre("");
@@ -49,7 +50,7 @@ const Formulario = ({ funcion, comidas, opciones }) => {
                         value={comida} onChange={manejarCambios}
                     >
                         {comidas.map((c) => (
-                            <MenuItem key={c} value={c}>{c}</MenuItem>
+                            <MenuItem key={c.nombre} value={c.nombre}>{c.nombre}</MenuItem>
                         ))}
                     </Select>
                     {comida && (

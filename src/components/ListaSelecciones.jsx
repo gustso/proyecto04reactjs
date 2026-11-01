@@ -5,9 +5,9 @@ const ListaSelecciones = ({ arreglo }) => {
 
     return (
         <>
-            <Card sx={{ minWidth: 275 }}>
-                {arreglo.map((p, i) => (
-                    <CardContent key={i} value={p}>
+            {arreglo.map((p) => (
+                <Card sx={{ minWidth: 275 }} key={p.id}>
+                    <CardContent value={p}>
                         <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
                             {p.nombre}
                         </Typography>
@@ -16,18 +16,17 @@ const ListaSelecciones = ({ arreglo }) => {
                         </Typography>
                         <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>adjective</Typography>
                         <Typography variant="body2">
-                            well meaning and kindly.
+                            {p.subOpcion}
                             <br />
                             {'"a benevolent smile"'}
                         </Typography>
-                    </CardContent>))}
-                <CardActions>
-                    <Button size="small">Pedir</Button>
-                </CardActions>
-            </Card>
-            
+                    </CardContent>
+                    < CardActions >
+                        <Button size="small" variant="contained">Pedir</Button>
+                    </CardActions>
+                </Card >
+            ))}
         </>
-
     )
 }
 
