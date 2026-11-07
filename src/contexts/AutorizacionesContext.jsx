@@ -1,17 +1,29 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { guardarUsuarioEnSesion, limpiarSesion, obtenerUsuarioEnSesion } from "../services/servicesUsuarios";
 
 // definir
 export const AutorizacionesContext = createContext(null);
 
 // proveer
-export const ProveedorContext = ( {children} ) => {
+export const ProveedorContext = ({ children }) => {
 
     const [usuarioActivo, setUsuarioActivo] = useState(null);
 
-    const guardarSesion = (usuario) => setUsuarioActivo(usuario);
+    useEffect(()=>{
+        const guardado = obtenerUsuarioEnSesion();
+        if (guardado) setUsuarioActivo(guardado);
+    },[]);
 
-    const cerrarSesion  = () => setUsuarioActivo(null);
-
+    const guardarSesion = (usuario) => {
+        setUsuarioActivo(usuario);
+        guardarUsuarioEnSesion(usuario);
+    }        
+    
+    const cerrarSesion = () => {
+        setUsuarioActivo(null);
+        limpiarSesion();
+    };
+    
     return (
         <AutorizacionesContext.Provider value={{ usuarioActivo, guardarSesion, cerrarSesion }}>
             {children}

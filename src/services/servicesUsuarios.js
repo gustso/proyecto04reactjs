@@ -10,6 +10,25 @@ export const listarUsuarios = async () => {
     }
 };
 
+// sesion
+export const guardarUsuarioEnSesion = (usuario) => {
+    sessionStorage.setItem("usuarioEnSesion", JSON.stringify(usuario));
+};
+
+export const obtenerUsuarioEnSesion = () => {
+    try{
+        const u = sessionStorage.getItem("usuarioEnSesion");
+        return u ? JSON.parse(u) : null;        
+    } catch {
+        return null;
+    }
+};
+
+export const limpiarSesion = () => {
+    sessionStorage.removeItem("usuarioEnSesion");
+};
+
+
 export const listarUsuariosActivos = () => {
 
 };

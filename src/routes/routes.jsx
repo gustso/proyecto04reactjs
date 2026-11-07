@@ -3,8 +3,10 @@ import Inicio from "../pages/Inicio";
 import Error from "../pages/Error";
 import Pedidos from "../pages/Pedidos";
 import App from "../App";
-import OtraPagina from "../pages/OtraPagina"
+import OtraPagina from "../pages/OtraPagina";
+import ProtectorRuta from "../components/ProtectorRuta";
 
+// se agregó el protector de ruta
 export const routes = createBrowserRouter([
     {
         path: "/",
@@ -14,11 +16,11 @@ export const routes = createBrowserRouter([
             { index: true, element: <Inicio /> },
             {
                 path: "/pedidos",
-                element: <Pedidos />
+                element: <ProtectorRuta> <Pedidos /> </ProtectorRuta>
             },
             {
                 path: "/otrapagina",
-                element: <OtraPagina />
+                element: <ProtectorRuta rolRequerido="admin"><OtraPagina /></ProtectorRuta>
             }]
     }
 ]);

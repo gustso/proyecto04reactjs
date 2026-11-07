@@ -15,7 +15,7 @@ const servicesAutorizaciones = (() => {
         
         if (!encontrado) return null;
                 
-        return { id: encontrado.id, nombre: encontrado.nombre };           
+        return { id: encontrado.id, nombre: encontrado.nombre, rol: encontrado.rol };        
     };
     // ver credenciales, observar la autenticación
 
